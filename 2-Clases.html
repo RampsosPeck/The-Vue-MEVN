@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Clases 7. js</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app" class="container mt-5">
+
+		<div   :class="['p-3','text-white', fondo]" >
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa explicabo labore inventore rem asperiores hic, natus aspernatur pariatur, rerum et! Eos blanditiis eum dolorum mollitia, ipsa nihil. Repellat veritatis, non.
+			</p>
+		</div>
+		<input type="text" class="form-control my-3" v-model="fondo">
+		<div class="text-white p-3" :class="{'bg-info' : color, 'bg-success' : !color }">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime necessitatibus distinctio quia veniam iure rerum facere placeat at, dignissimos sed! Ad dolor, repudiandae? Quam expedita voluptatem consequuntur, ullam, id aliquam.</p>
+		</div>
+		<button class="btn" :class="{'btn-info' : color, 'btn-success' : !color }" @click="color=!color">Cambiar</button>
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="07.js"></script>
+</body>
+</html>

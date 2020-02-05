@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Ciclo-Vida VUE</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="componentes/saludo.js"></script>
+	<script src="componentes/contador.js"></script>
+</head>
+<body>
+	<div id="app" class="container mt-5">
+
+		<saludo></saludo>
+		<contador></contador>
+
+	</div>
+
+<script>
+	new Vue({
+		el: '#app'
+
+	});
+</script>
+
+</body>
+</html>
