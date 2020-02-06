@@ -1,0 +1,10 @@
+[
+	{"nombre":"HTML", "id":1},
+	{"nombre":"JAVA", "id":2},
+	{"nombre":"GO", "id":3},
+	{"nombre":"LARAVEL", "id":4},
+	{"nombre":"VUE", "id":5},
+	{"nombre":"VUEX", "id":6},
+	{"nombre":"PHP", "id":7},
+	{"nombre":"GGGG", "id":8}
+]
