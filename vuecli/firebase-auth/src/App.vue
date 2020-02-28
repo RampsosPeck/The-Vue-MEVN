@@ -1,26 +1,34 @@
 <template>
   <div id="app" class="container mt-5">
+
+    <particles-bg  type="color" :num="5" :bg="true"/>
+
     <div id="nav" class="nav-pills">
-      <router-link :to="{name:'inicio'}" v-if="existeUsuario" class="btn btn-primary mx-2">
+      <router-link :to="{name:'inicio'}" v-if="existeUsuario" class="btn btn-info mx-2">
         INICIO
       </router-link> |
-      <router-link :to="{name:'registro'}" v-if="!existeUsuario" class="btn btn-primary mx-2">
+      <router-link :to="{name:'registro'}" v-if="!existeUsuario" class="btn btn-info mx-2">
         Registro
       </router-link> |
-      <router-link :to="{name:'ingreso'}" v-if="!existeUsuario" class="btn btn-primary mx-2">
+      <router-link :to="{name:'ingreso'}" v-if="!existeUsuario" class="btn btn-info mx-2">
         Ingreso
       </router-link> |
       <a @click="cerrarSesion" v-if="existeUsuario" class="btn btn-danger mx-2">
         Cerrar Sesión
       </a>
     </div>
+    <img src="@/assets/logo.png" alt="" class="rounded mx-auto d-block"  >
     <router-view/>
   </div>
 </template>
 <script>
   import { mapActions, mapGetters } from "vuex"
+  import { ParticlesBg } from "particles-bg-vue";
   export default {
     name: 'App',
+    components: {
+      ParticlesBg
+    },
     methods: {
       ...mapActions(['cerrarSesion'])
     },
@@ -29,6 +37,7 @@
     }
   };
 </script>
+
 <style>/*
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
