@@ -3,12 +3,16 @@ import Vuex from 'vuex'
 var firebase = require("firebase/app");
 import router from '../router'
 
+import db from '../main'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
   	usuario: '',
-  	error: ''
+  	error: '',
+    tareas: [],
+    tarea: { nombre: '', id: ''}
   },
   mutations: {
   	setUsuario(state, payload){
@@ -16,7 +20,18 @@ export default new Vuex.Store({
   	},
   	setError(state, payload){
   		state.error = payload
-  	}
+  	},
+    setTareas(state, tareas){
+      state.tareas = tareas
+    },
+    setTarea(state, tarea){
+      state.tarea = tarea
+    },
+    eliminarTareamuta(state, id){
+      state.tareas = state.tareas.filter(doc=>{
+        return doc.id != id
+      })
+    }
   },
   actions: {
   	crearUsuario({commit}, payload){
@@ -24,7 +39,13 @@ export default new Vuex.Store({
   		.then(res=>{
   			//console.log(res);
   			commit('setUsuario',{email:res.user.email,uid: res.user.uid})
-  			router.push({name: 'inicio'})
+  			//Aqui creamos una tarea de ejemplo del nuevo usuario
+        db.collection(res.user.email).add({
+          nombre: 'Tarea de ejemplo'
+        })
+        .then(()=>{
+          router.push({name: 'inicio'})
+        })
   		})
   		.catch(err=>{
   			//console.log(err,message);
@@ -54,7 +75,62 @@ export default new Vuex.Store({
   		firebase.auth().signOut()
   		commit('setUsuario',null)
   		router.push({name: 'ingreso'})
-  	}
+  	},
+    getTareas({commit}){
+      const usuario = firebase.auth().currentUser
+      const tareas = []
+      db.collection(usuario.email).get()
+      .then(snapshot =>  {
+        snapshot.forEach( doc => {
+          //console.log(doc.id);
+          //console.log(doc.data());
+          let tarea = doc.data();
+          tarea.id = doc.id;
+          tareas.push(tarea)
+        })
+      })
+
+      commit('setTareas', tareas)
+    },
+    getTarea({commit}, id){
+      const usuario = firebase.auth().currentUser
+      db.collection(usuario.email).doc(id).get()
+      .then( doc => {
+        //console.log(doc.id);
+        //console.log(doc.data());
+        let tarea = doc.data();
+        tarea.id = doc.id
+        commit('setTarea', tarea)
+      })
+    },
+    editarTarea({commit}, tarea){
+      const usuario = firebase.auth().currentUser
+      db.collection(usuario.email).doc(tarea.id).update({
+        nombre: tarea.nombre
+      })
+      .then(()=> {
+        router.push({name: 'inicio'})
+      })
+    },
+    agregarTarea({commit}, nombre){
+      const usuario = firebase.auth().currentUser
+      db.collection(usuario.email).add({
+        nombre: nombre
+      })
+      .then(doc => {
+        //console.log(doc.id)
+        router.push({name: 'inicio'})
+      })
+    },
+    eliminarTarea({commit, dispatch}, id){
+      const usuario = firebase.auth().currentUser
+      db.collection(usuario.email).doc(id).delete()
+      .then(()=>{
+        console.log('Tarea fue eliminada');
+        //dispatch('getTareas')
+        commit('eliminarTareamuta',id)
+      })
+    }
   },
   //Los getters es usamos los states y devolvemos true o false
   getters: {
