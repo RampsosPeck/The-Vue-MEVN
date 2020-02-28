@@ -17,6 +17,7 @@
         Cerrar Sesión
       </a>
     </div>
+    <h1 class="text-center mt-5"> <b> APP TAREAS </b></h1>
     <img src="@/assets/logo.png" alt="" class="rounded mx-auto d-block"  >
     <router-view/>
   </div>

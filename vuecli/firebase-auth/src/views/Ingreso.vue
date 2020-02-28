@@ -2,7 +2,7 @@
 	<div class="container">
 	<div class="row">
 		<div class="col-12 col-sm-10 col-lg-6 mx-auto">
-			<h1 class="text-center mt-5"> <b> INGRESAR </b></h1>
+			<h2 class="text-center mt-5"> <b> INGRESAR </b></h2>
 			<form @submit.prevent="ingresoUsuario({email, pass})" class="bg-white shadow rounded py-3 px-4">
 				<div class="input-group mb-3 mr-sm-5">
 					<div class="input-group-prepend ">
