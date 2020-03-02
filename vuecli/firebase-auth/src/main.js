@@ -8,6 +8,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+
 var firebase = require("firebase/app");
 require("firebase/auth");
 //require("firebase/database");
