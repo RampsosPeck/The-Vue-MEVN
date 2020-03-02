@@ -13,6 +13,7 @@
               <b-nav-item :to="{name: 'Grid'}">Grid</b-nav-item>
               <b-nav-item :to="{name: 'Cards'}">Cards</b-nav-item>
               <b-nav-item :to="{name: 'Forms'}">Formularios</b-nav-item>
+              <b-nav-item :to="{name: 'Validaciones'}">Validaciones</b-nav-item>
             </b-navbar-nav>
 
 
