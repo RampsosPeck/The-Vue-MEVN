@@ -10,6 +10,9 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import { auth } from "@/firebase";
 Vue.config.productionTip = false
 
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
+
 //Esto para detectar un usuario
 auth.onAuthStateChanged(function(user) {
   if (user) {
